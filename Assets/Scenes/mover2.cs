@@ -11,9 +11,7 @@ public class mover2 : MonoBehaviour
         prevScale = GetComponent<Transform>().localScale;
     }
 
-    // public void ButtonPressed() {
-    //     gameObject.SetActive(false);
-    // }
+   
 
     bool state = false;
     // Update is called once per frame
@@ -31,37 +29,9 @@ public class mover2 : MonoBehaviour
           }
         }
 
-        // if(Input.GetKeyDown(KeyCode.Alpha1))
-        // {
-        //    // state = !state;
-        //     gameObject.SetActive(true);
-        // }
+        
         transform.rotation = Quaternion.Euler(0, 0, (Time.time*50) % 360);
         
     }
 }
-// using System.Collections;
-// using System.Collections.Generic;
-// using UnityEngine;
-
-// public class Mover2 : MonoBehaviour
-// {
-//     bool state = true;
-
-//     // Update is called once per frame
-//     void Update()
-//     {
-//         transform.rotation = Quaternion.Euler(0, 0, (Time.time * 50) % 360);
-
-//         // בדיקה אם נלחץ הכפתור השמאלי של העכבר
-//         if (Input.GetMouseButtonDown(0))
-//         {
-//             // שינוי סטטוס
-//             state = !state;
-
-//             // החבאה או הצגה מחדש של האובייקט בהתאם לסטטוס
-//             gameObject.SetActive(state);
-//         }
-//     }
-//}
 
