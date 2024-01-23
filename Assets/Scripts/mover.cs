@@ -8,14 +8,14 @@ public class Mover : MonoBehaviour
     bool state = false;
     public float amplitude = 1.0f;  // גובה התנועה
     public float frequency = 1.0f;  // תדר התנועה
-    public float convex = 4.0f;     // קמירות תנועת המטוטלת
-    public float startingPosition = -4.0f; // מיקום התחלתי לפי x
+
 
     // Start is called before the first frame update
     void Start()
-    { 
+    {
+        
         prevScale = GetComponent<Transform>().localScale;
-        transform.position = new Vector3(startingPosition, 0, 0);
+        transform.position = new Vector3(-4, 0, 0);
     }
 
     // Update is called once per frame
@@ -26,7 +26,7 @@ public class Mover : MonoBehaviour
            state = !state;
         
            if( state ) {
-               GetComponent<Transform>().localScale = new Vector3(0,0,0);
+               GetComponent<Transform>().localScale = new Vector3(0,0,0); //transform.localScale = new Vector3(0,0,0);
            }
           else {
               GetComponent<Transform>().localScale = prevScale;
@@ -34,9 +34,10 @@ public class Mover : MonoBehaviour
         }
         float newX = transform.position.x/4 + Mathf.Sin(frequency*Time.time) * Time.deltaTime ;
         float newY = 1-Mathf.Sqrt(2-newX*newX);
-        float newPositionX = convex * newX;
-        float newPositionY = convex * newY;
-        transform.position = new Vector3(newPositionX, newPositionY, transform.position.z);
+        // Console.WriteLine(newX, newY);
+        // Debug.Log("newX=" + newX + " newY=" + newY + " freq=" + frequency + " sin=" + Mathf.Sin(frequency*Time.time));
+        // Debug.Log(newY);
+        transform.position = new Vector3(4*newX, 4*newY, transform.position.z);
     }
 }
     
