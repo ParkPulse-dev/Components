@@ -5,13 +5,12 @@ using UnityEngine;
 public class mover2 : MonoBehaviour
 {
     // Start is called before the first frame update
+    public float speedRotation;
     Vector3 prevScale;
     void Start()
     {
         prevScale = GetComponent<Transform>().localScale;
     }
-
-   
 
     bool state = false;
     // Update is called once per frame
@@ -22,16 +21,14 @@ public class mover2 : MonoBehaviour
            state = !state;
         
            if( state ) {
-               GetComponent<Transform>().localScale = new Vector3(0,0,0); //transform.localScale = new Vector3(0,0,0);
+               GetComponent<Transform>().localScale = new Vector3(0,0,0);
            }
           else {
               GetComponent<Transform>().localScale = prevScale;
           }
         }
-
-        
-        transform.rotation = Quaternion.Euler(0, 0, (Time.time*50) % 360);
+        speedRotation = 50;
+        transform.rotation = Quaternion.Euler(0, 0, (Time.time * speedRotation) % 360);
         
     }
 }
-
