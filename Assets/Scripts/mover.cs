@@ -34,7 +34,9 @@ public class Mover : MonoBehaviour
         }
         float newX = transform.position.x/4 + Mathf.Sin(frequency*Time.time) * Time.deltaTime ;
         float newY = 1-Mathf.Sqrt(2-newX*newX);
-        transform.position = new Vector3(convex*newX, convex*newY, transform.position.z);
+        float newPositionX = convex * newX;
+        float newPositionY = convex * newY;
+        transform.position = new Vector3(newPositionX, newPositionY, transform.position.z);
     }
 }
     
