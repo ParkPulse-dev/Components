@@ -21,53 +21,40 @@ public class Heart_Beat : MonoBehaviour
     bool state = false;
     void Update()
     {
-        float scaleChange = pulseSpeed * Time.deltaTime;
-        float newGrowX = initialScale.x * scaleChange;
-        float newGrowY = initialScale.y * scaleChange;
-        float newGrowZ = initialScale.z * scaleChange;
-        float minX = initialScale.x * maxScaleFactor;
-        float minY = initialScale.y * maxScaleFactor;
-        float minY = initialScale.z * maxScaleFactor;
-        float maxX = initialScale.x * maxScaleFactor;
-        float maxY = initialScale.y * maxScaleFactor;
-        float maxZ = initialScale.z * maxScaleFactor;
-        
         // Calculate the scaling factor based on time and speed
          if(Input.GetKeyDown(KeyCode.Alpha3))
         {
            state = !state;
         
            if( state ) {
-               GetComponent<Transform>().localScale = new Vector3(0,0,0);
+               GetComponent<Transform>().localScale = new Vector3(0,0,0); //transform.localScale = new Vector3(0,0,0);
            }
           else {
               GetComponent<Transform>().localScale = prevScale;
           }
         }
+        float scaleChange = pulseSpeed * Time.deltaTime;
 
         // Determine whether to grow or shrink
         if (isGrowing)
         {
-            transform.localScale += new Vector3(newGrowX, newGrowY, newGrowZ);
+            transform.localScale += new Vector3(initialScale.x * scaleChange, initialScale.y * scaleChange, initialScale.z * scaleChange);
 
             // Switch to shrinking if reaching the maximum scale
-            if (transform.localScale.x >= maxX)
+            if (transform.localScale.x >= initialScale.x * maxScaleFactor)
             {
-                float newShrinkX = initialScale.x * maxScaleFactor;
-                float newShrinkY = initialScale.y * maxScaleFactor;
-                float newShrinkZ = initialScale.z * maxScaleFactor;
-                transform.localScale = new Vector3(maxX, maxY, maxZ);
+                transform.localScale = new Vector3(initialScale.x * maxScaleFactor, initialScale.y * maxScaleFactor, initialScale.z * maxScaleFactor);
                 isGrowing = false;
             }
         }
         else
         {
-            transform.localScale -= new Vector3(newGrowX, newGrowY, newGrowZ);
+            transform.localScale -= new Vector3(initialScale.x * scaleChange, initialScale.y * scaleChange, initialScale.z * scaleChange);
 
             // Switch to growing if reaching the minimum scale
-            if (transform.localScale.x <= minX)
+            if (transform.localScale.x <= initialScale.x * minScaleFactor)
             {
-                transform.localScale = new Vector3(minX, minY, minZ);
+                transform.localScale = new Vector3(initialScale.x * minScaleFactor, initialScale.y * minScaleFactor, initialScale.z * minScaleFactor);
                 isGrowing = true;
             }
         }
