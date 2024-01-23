@@ -10,6 +10,7 @@ public class mover2 : MonoBehaviour
     void Start()
     {
         prevScale = GetComponent<Transform>().localScale;
+        speedRotation = 50f;
     }
 
     bool state = false;
@@ -27,8 +28,6 @@ public class mover2 : MonoBehaviour
               GetComponent<Transform>().localScale = prevScale;
           }
         }
-        speedRotation = 50;
         transform.rotation = Quaternion.Euler(0, 0, (Time.time * speedRotation) % 360);
-        
     }
 }
